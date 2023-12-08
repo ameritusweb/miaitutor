@@ -1,1 +1,1 @@
-# miaitutor
+# MI AI Tutor
