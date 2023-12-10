@@ -1,0 +1,141 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/png" href="/miai-favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="title" content="MIAITutor: Master Prompt Engineering & AI Learning">
+		<meta name="description" content="Explore MIAITutor for expert prompt engineering tips, AI educational blogs, interactive lessons, and quizzes. Perfect for learners and educators in AI.">
+		<meta name="keywords" content="MIAITutor, My AI Tutor, Prompt Engineering, AI Learning, AI Education, Chatbot Interaction, AI Teaching, AI Blogs, AI Quizzes">
+		<meta name="robots" content="index, follow">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="author" content="MIAITutor">
+		<meta property="og:title" content="MIAITutor: Master Prompt Engineering & AI Learning">
+		<meta property="og:description" content="Your one-stop destination for mastering prompt engineering and AI teaching techniques.">
+		<meta property="og:image" content="https://miaitutor.com/miai-favicon.png">
+		<meta property="og:url" content="https://miaitutor.com">
+		<meta property="og:type" content="website">
+		<title>{title}</title>
+	</head>
+	<body style="margin-top: 0px;">
+		<nav>
+			<div>
+				<div class="absolute left-[-150px] lg:left-[0px] top-0"></div>
+				<div class="max-w-6xl mx-auto px-4 ml-36">
+					<div class="flex justify-between">
+						<div class="flex space-x-4 pl-36">
+							<div class="flex items-center space-x-1">
+								<a href="/" class="py-5 px-3 text-white hover:text-green-200">Home</a>
+								<a href="#" class="py-5 px-3 text-white hover:text-green-200">About</a>
+								<a href="/prompt-engineering" class="py-5 px-3 text-white hover:text-green-200">Prompt Engineering</a>
+								<a href="#" class="py-5 px-3 text-white hover:text-green-200">Blogs</a>
+								<a href="#" class="py-5 px-3 text-white hover:text-green-200">Essays</a>
+								<a href="#" class="py-5 px-3 text-white hover:text-green-200">Lesson Plans</a>
+								<a href="#" class="py-5 px-3 text-white hover:text-green-200">Quizzes</a>
+							</div>
+						</div>
+						<div class="flex items-center space-x-1">
+							<a href="#" class="py-5 px-3">Help</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<slot />
+      </nav>
+		
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 136, 58, 234;
+		--accent-lighter: 186, 166, 200;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-lighter)) 30%,
+			rgba(200, 200, 200, 0.5) 60%
+		);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #13151a;
+		background-size: 224px;
+	}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+		font-size: 1rem;
+	}
+	nav {
+		background-image:url('/bg5.png'); 
+		min-height: 100vh;
+	}
+
+	nav > div {
+		position: sticky;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		background-color: var(--accent-dark);
+		z-index: 10;
+	}
+
+	nav > div > div:first-of-type {
+		background-image:url('/miai-bg.png'); z-index: 2; height: 100vh; width: 300px; background-position: top left; background-size: 300px; background-repeat: no-repeat;
+	}
+
+	nav > div > div:last-of-type {
+		background-image:url('/bg5.png');
+		opacity: 0.8;
+	}
+
+	.link-card > div:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent-lighter))!important;
+	}
+
+	a {
+		font-weight: 500;
+		color: #3ab7bc;
+		text-decoration: inherit;
+	}
+	a:hover {
+		color: rgb(48, 146, 148);
+	}
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		width: 50%;
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	main > div, main > ul {
+		width: 80%;
+		min-width: 300px;
+	}
+	main > div > h1 {
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+</style>

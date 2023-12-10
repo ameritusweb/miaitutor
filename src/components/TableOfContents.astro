@@ -1,0 +1,48 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+// Props declaration
+interface Props {
+	headings: MarkdownHeading[];
+}
+const { headings }: Props = Astro.props;
+---
+
+<aside data-client-load class="hidden lg:block">
+  <script>import { initTOC } from "../scripts/toc";
+      initTOC();
+  </script>
+  <h2 class="text-xl font-semibold mb-4">ON THIS PAGE</h2>
+  <ul>
+    {headings?.filter((h: MarkdownHeading) => h.depth < 5).map((heading: MarkdownHeading) => (
+      <li class="mb-1">
+        <a href={`#${heading.slug}`} class="toc-link block text-sm truncate text-white hover:text-purple-400 opacity-80 pl-4 border-l-4 border-purple-600 border-0 hover:border-purple-600!">
+          {heading.depth > 3 ? ' - ': ''}{heading.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</aside>
+<style>
+  aside {
+    position: fixed; left: 70%; top: 2rem;
+    max-width: 30%;
+    height: 90%;
+  }
+
+  aside > ul {
+    padding: 1rem;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+
+  aside a.active {
+    color: rgb(var(--accent-light));
+    border-style: solid;
+    border-left-width: 4px !important;
+    padding-left: 0.7rem;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-radius: 5px;
+  }
+</style>
