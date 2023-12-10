@@ -18,7 +18,7 @@ export function initTOC(): void {
     }, time);
   };
 
-  function scrollHandler(): void {
+  function scrollHandler() {
     throttle(() => {
       let currentSectionId = '';
 
@@ -34,7 +34,7 @@ export function initTOC(): void {
         const isActive = link.getAttribute('href')?.substring(1) === currentSectionId;
         link.classList.toggle('active', isActive);
         if (isActive) {
-          link.scrollIntoView({ block: 'nearest' });
+          link.scrollIntoView({ block: 'nearest'}); // No smooth behavior here for a snappy response
         }
       });
     }, 100);
@@ -42,12 +42,18 @@ export function initTOC(): void {
 
   window.addEventListener('scroll', scrollHandler);
 
-  tocLinks.forEach((link: Element) => {
-    link.addEventListener('click', (e: Event) => {
+  tocLinks.forEach(link => {
+    link.addEventListener('click', e => {
       e.preventDefault();
       const targetId = (e.target as HTMLAnchorElement).getAttribute('href')?.substring(1) ?? '';
       const target = document.getElementById(targetId);
-      target?.scrollIntoView({ behavior: 'smooth' });
+      if (target) {
+        // Calculate the position to scroll to, accounting for the fixed navigation bar.
+        const topPositionToScroll = target.getBoundingClientRect().top + window.scrollY - 100;
+  
+        // Perform the smooth scroll to the adjusted position.
+        window.scrollTo({ top: topPositionToScroll, behavior: 'smooth' });
+      }
     });
   });
 }
